@@ -1,0 +1,2 @@
+[servers]
+staging-local ansible_connection=local

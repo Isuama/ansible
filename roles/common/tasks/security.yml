@@ -1,0 +1,16 @@
+---
+- name: add /etc/security/limits.conf
+  copy: >
+    src="../files/etc-security-limits.conf"
+    dest=/etc/security/limits.conf
+    owner=root group=root mode=0644
+  tags:
+    - common:security
+
+- name: add /etc/sysctl.conf
+  copy: >
+    src="../files/etc-sysctl.conf"
+    dest=/etc/sysctl.conf
+    owner=root group=root mode=0644
+  tags:
+    - common:security
