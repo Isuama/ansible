@@ -1,5 +1,5 @@
 ---
-name: Clean up unused apt files
-apt:
-  autoclean: yes
-  autoremove: yes
+- name: Clean up unused apt files
+  apt:
+    autoclean: yes
+    autoremove: yes

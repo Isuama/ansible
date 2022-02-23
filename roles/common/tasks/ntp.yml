@@ -1,6 +1,6 @@
 ---
-- name: disable network time synchronization
-  command: timedatectl set-ntp off
+#- name: disable network time synchronization
+#  command: timedatectl set-ntp off
 
 - name: Install the NTP daemon to synchronize the clocks to ms.
   apt: 

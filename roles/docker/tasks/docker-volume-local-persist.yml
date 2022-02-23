@@ -5,4 +5,7 @@
   script: /tmp/docker-volume-local-persist.sh
 
 - name: remove script
-  shell: rm -rf  /tmp/docker-volume-local-persist.sh
+  file:
+    name: /tmp/docker-volume-local-persist.sh
+    state: absent
+
