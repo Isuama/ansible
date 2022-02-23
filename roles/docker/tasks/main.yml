@@ -25,8 +25,8 @@
 - name: Install Docker
   apt:
     name: 
-    - "docker-ce={{DOCKER_VERSION}}"
-    - "docker-ce-cli={{DOCKER_VERSION}}"
+    - "docker-ce"
+    - "docker-ce-cli"
     - "containerd.io"
     state: present
     force_apt_get: "yes"
