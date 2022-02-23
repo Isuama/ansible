@@ -1,0 +1,10 @@
+#docker configuration
+DOCKER_VERSION: "20.10.12"
+DOCKER_COMPOSE_VERSION: "1.25.1"
+DOCKER_PACKAGES:
+- apt-transport-https
+- ca-certificates
+- curl
+- gnupg
+- lsb-release
+- software-properties-common

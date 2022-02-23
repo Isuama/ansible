@@ -2,9 +2,11 @@
 - hosts: servers
   become: true
   become_user: root
+  vars:
+    hosts: servers
   tasks:
-    - name: Update apt repo and cache on all Ubuntu VMs
-      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    - name: Update apt repo and cache on all servers
+      include_tasks: ../roles/common/tasks/update.yml 
 
 - hosts: servers
   become: true

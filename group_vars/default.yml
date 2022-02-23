@@ -1,0 +1,2 @@
+DEBIAN_FRONTEND: noninteractive
+SERVERADMIN_USER: serveradmin
