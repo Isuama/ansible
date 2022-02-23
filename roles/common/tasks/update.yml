@@ -1,5 +1,5 @@
 ---
-- name: Update apt repo and cache on all {{hosts}} server
+- name: Update apt repo and cache on {{server_list}} servers
   apt: 
     update_cache: "yes"
     force_apt_get: "yes"

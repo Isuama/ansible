@@ -3,7 +3,7 @@
   become: true
   become_user: root
   vars:
-    hosts: docker
+    server_list: docker
   tasks:
     - name: Update apt repo and cache on docker VMs
       include_tasks: ../roles/common/tasks/update.yml 
@@ -12,7 +12,7 @@
   become: true
   become_user: root
   vars:
-    hosts: docker
+    server_list: docker
   vars_files:
     - ../roles/docker/vars/default.yml
   tasks:

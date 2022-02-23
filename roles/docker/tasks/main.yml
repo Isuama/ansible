@@ -17,28 +17,31 @@
 - name: Add Docker Repository
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_version.stdout }} stable"
-  state: present
+    state: present
 
 - name: Update apt repo and cache on docker VMs
-  include_tasks: ../../roles/common/tasks/update.yml 
+  include_tasks: ../roles/common/tasks/update.yml 
 
 - name: Install Docker
   apt:
-    name: "docker-ce={{DOCKER_VERSION}} docker-ce-cli={{DOCKER_VERSION}} containerd.io"
-  state: present
-  force_apt_get: "yes"
+    name: 
+    - "docker-ce={{DOCKER_VERSION}}"
+    - "docker-ce-cli={{DOCKER_VERSION}}"
+    - "containerd.io"
+    state: present
+    force_apt_get: "yes"
 
 - name: Adding user {{ SERVERADMIN_USER }} to docker group
   user:
     name: "{{ SERVERADMIN_USER }}"
     groups: "docker"
-  append: "yes"
+    append: "yes"
 
 - name: Install Docker Compose
   get_url:
     url: https://github.com/docker/compose/releases/download/{{ DOCKER_COMPOSE_VERSION }}/docker-compose-Linux-x86_64
     dest: "/usr/local/bin/docker-compose"
-  mode: 0755
+    mode: 0755
 
 # - name: Reboot server in order for changes to take place
 # shell: "sleep 1 && reboot"
