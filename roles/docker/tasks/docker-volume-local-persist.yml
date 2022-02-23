@@ -1,0 +1,8 @@
+- name: Transfer the script
+  copy: src=../files/docker-volume-local-persist.sh dest=/tmp mode=0777
+
+- name: Execute the script
+  script: /tmp/docker-volume-local-persist.sh
+
+- name: remove script
+  shell: rm -rf  /tmp/docker-volume-local-persist.sh

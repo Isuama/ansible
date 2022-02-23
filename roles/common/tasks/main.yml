@@ -1,3 +1,9 @@
 ---
 - name: include server settings
   include: security.yml
+
+- name: configure NTP
+  include: ntp.yml
+
+- name: Clean up unused apt files
+  include: cleanup.yml

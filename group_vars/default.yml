@@ -1,2 +1,5 @@
 DEBIAN_FRONTEND: noninteractive
 SERVERADMIN_USER: serveradmin
+# superadmin - # os level change
+# serveradmin - # application level changes
+

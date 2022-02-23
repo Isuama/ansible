@@ -20,3 +20,9 @@
     - name: install docker
       include_tasks: ../roles/docker/tasks/main.yml 
   
+- hosts: docker
+  become: true
+  become_user: root
+  tasks:
+    - name: Persist docker volume locally
+      script: ../roles/docker/files/docker-volume-local-persist.sh

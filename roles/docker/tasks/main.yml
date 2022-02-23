@@ -43,6 +43,14 @@
     dest: "/usr/local/bin/docker-compose"
     mode: 0755
 
+- name: Make sure docker is started, and is enabled on restart.
+  service: 
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Install local-persist docker volume plugin
+  include: docker-volume-local-persist.yml
 # - name: Reboot server in order for changes to take place
 # shell: "sleep 1 && reboot"
 # async: 1

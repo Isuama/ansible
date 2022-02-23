@@ -1,0 +1,5 @@
+---
+name: Clean up unused apt files
+apt:
+  autoclean: yes
+  autoremove: yes
