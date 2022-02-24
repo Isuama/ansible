@@ -23,5 +23,5 @@
   tasks:
     - name: install extra tools
       include_tasks: ../roles/common/tasks/install-extra-tools.yml 
-    tags:
-    - common:extra-tools
+  tags:
+  - common:extra-tools
