@@ -1,0 +1,8 @@
+---
+- name: Install list of prerequisite packages
+  apt:
+    name: {{item}}
+    state: installed
+  with_items: {{EXTRA_TOOLS}}
+  tags:
+    - common:extra-tools

@@ -3,3 +3,6 @@ staging-local ansible_connection=local
 
 [docker]
 staging-local ansible_connection=local
+
+[swarm-manager]
+staging-local ansible_connection=local

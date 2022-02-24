@@ -51,6 +51,13 @@
 
 - name: Install local-persist docker volume plugin
   include: docker-volume-local-persist.yml
+
+- name: add /etc/docker/daemon.json
+  copy: >
+    src="../files/daemon.json"
+    dest=/etc/docker/daemon.json
+    owner=root group=root mode=0644
+
 # - name: Reboot server in order for changes to take place
 # shell: "sleep 1 && reboot"
 # async: 1

@@ -2,3 +2,4 @@ EXTRA_TOOLS:
 - iotop 
 - ncdu
 - dos2unix
+- net-tools

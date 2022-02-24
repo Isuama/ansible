@@ -5,5 +5,8 @@
 - name: configure NTP
   include: ntp.yml
 
+- name: Install extra tools
+  include: install-exta-tools.yml
+
 - name: Clean up unused apt files
   include: cleanup.yml
