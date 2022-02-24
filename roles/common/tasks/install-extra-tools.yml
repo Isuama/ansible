@@ -4,5 +4,3 @@
     name: "{{ EXTRA_TOOLS }}"
     state: present
     force_apt_get: "yes"
-  tags:
-    - common:extra-tools
