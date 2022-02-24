@@ -1,7 +1,5 @@
 [servers]
 staging-local ansible_connection=local
-vm1
-vm2
 
 [docker]
 staging-local ansible_connection=local
