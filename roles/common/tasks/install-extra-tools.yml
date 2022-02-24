@@ -1,8 +1,8 @@
 ---
 - name: Install list of prerequisite packages
   apt:
-    name: {{item}}
-    state: installed
-  with_items: {{EXTRA_TOOLS}}
+    name: "{{ EXTRA_TOOLS }}"
+    state: present
+    force_apt_get: "yes"
   tags:
     - common:extra-tools
