@@ -1,0 +1,6 @@
+---
+- name: Initialize Docker Swarm
+  docker_swarm: 
+    advertise_addr: "{{ SWARM_MANAGER_IP }}"
+    state: present
+  tags: swarm:single
