@@ -1,0 +1,24 @@
+---
+# create application admin user
+- name: Add admin user account
+  user: 
+    name: "{{ SERVERADMIN_USER }}"
+    uid: "{{ SERVERADMIN_ID }}"
+    group: "{{ SERVERADMIN_GROUPID }}"
+    home: "{{ SERVERADMIN_HOME }}"
+    shell: "{{ SERVERADMIN_SHELL }}"
+    state: present
+
+- name: Add admin user's ssh public key to authorized_keys
+  authorized_key:
+    user: "{{ SERVERADMIN_USER }}"
+    key:  "{{ SERVERADMIN_PUBLIC_KEY_URL }}"
+  state: present
+
+- name: Add admin user to sudoers
+  action: 
+    lineinfile:
+      dest: "/etc/sudoers"
+      regexp: "{{ SERVERADMIN_USER }} ALL" 
+      line: "{{ SERVERADMIN_USER }} ALL=(ALL) NOPASSWD:ALL"
+      state: present

@@ -1,3 +1,6 @@
+[ansible-master]
+staging-local
+
 [servers]
 staging-local ansible_connection=local
 
@@ -6,3 +9,5 @@ staging-local ansible_connection=local
 
 [swarm-manager]
 staging-local ansible_connection=local
+
+[sawrm-worker]

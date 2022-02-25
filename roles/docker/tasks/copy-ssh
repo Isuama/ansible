@@ -1,0 +1,10 @@
+---
+- name: ensure public key is present on ansible master server
+  hosts: ansible-master
+  tasks:
+    - name: ensure public key exisits
+      authorized_key: 
+        user: "{{ SERVERADMIN_USER }}" 
+        key: "{{ SERVERADMIN_PUBLIC_KEY_URL }}"
+        state: present
+      tags: common:ssh
