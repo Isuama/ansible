@@ -13,7 +13,7 @@
   authorized_key:
     user: "{{ SERVERADMIN_USER }}"
     key:  "{{ SERVERADMIN_PUBLIC_KEY_URL }}"
-  state: present
+    state: present
 
 - name: Add admin user to sudoers
   action: 
