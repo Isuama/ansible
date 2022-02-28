@@ -13,3 +13,6 @@
 
 - name: Clean up unused apt files
   include: cleanup.yml
+
+- name: Install GitLab Dependecies
+  include: gitlab.yml
