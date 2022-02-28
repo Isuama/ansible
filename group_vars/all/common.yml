@@ -11,5 +11,6 @@ SWARM_MANAGER_IP: 192.168.1.240
 gitlab_url: "https://gitlab.com/"
 api_token: "glpat-Bbh15AoXsL8wWC8dyVGy"
 registration_token: "GR1348941wMYMxRZAyRC29TRMv8ZD"
+gitlab_runner_description: "staging swarm manager"
 gitlab_tags: 
   - docker
