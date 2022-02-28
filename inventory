@@ -11,3 +11,6 @@ staging-local ansible_connection=local
 staging-local ansible_connection=local
 
 [sawrm-worker]
+
+[gitlab]
+staging-local ansible_connection=local
