@@ -4,3 +4,14 @@
     name: "{{ EXTRA_TOOLS }}"
     state: present
     force_apt_get: "yes"
+  tags:
+   - "common:git-lab"
+
+- name: Install bottle python package
+  pip:
+    name: "{{ PIP_TOOLS }}"
+    state: present
+    force_apt_get: "yes"
+  tags:
+  - "common:pip"
+     

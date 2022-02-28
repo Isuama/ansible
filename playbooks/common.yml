@@ -36,6 +36,7 @@
       include_tasks: ../roles/common/tasks/install-extra-tools.yml 
   tags:
   - common:extra-tools
+  - common:pip-tools
 
 - hosts: gitlab
   become: true

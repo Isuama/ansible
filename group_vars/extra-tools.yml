@@ -3,3 +3,6 @@ EXTRA_TOOLS:
 - ncdu
 - dos2unix
 - net-tools
+
+PIP_TOOLS:
+- python-gitlab
