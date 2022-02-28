@@ -40,6 +40,7 @@
 - hosts: gitlab
   become: true
   become_user: root
+  gather_facts: false
   tasks:
     - name: Install GitLab Dependecies
       include_tasks: ../roles/common/tasks/gitlab.yml 

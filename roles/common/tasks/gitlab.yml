@@ -10,5 +10,6 @@
     active: True
     run_untagged: False
     locked: False
+    owned: True
   tags:
     - common:gitlab
