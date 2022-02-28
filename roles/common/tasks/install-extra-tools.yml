@@ -5,13 +5,11 @@
     state: present
     force_apt_get: "yes"
   tags:
-   - "common:git-lab"
+  - "common:git-lab"
 
-- name: Install bottle python package
+- name: Install pip modules
   pip:
     name: "{{ PIP_TOOLS }}"
     state: present
-    force_apt_get: "yes"
   tags:
-  - "common:pip"
-     
+  - "common:pip-tools"
