@@ -1,5 +1,6 @@
 - name: Set Docker Network
   docker_network:
+    name: overlay
     state: present
     driver: overlay
     attachable: internal
