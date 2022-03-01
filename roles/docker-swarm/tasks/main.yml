@@ -3,11 +3,13 @@
   shell: docker info
   changed_when: false
   register: docker_info
-  debug:
-    msg:
-    - "Docker Swarm Master IP is: {{ docker_swarm_addr }}"
-  tags:
-    - docker:swarm
+
+  #- name: check variables
+  #  debug:
+  #    msg:
+  #    - "Docker Swarm Master IP is: {{ docker_swarm_addr }}"
+  #  tags:
+  #    - docker:swarm
 
 - name: Init "Swarm Mode" on the first manager.
   shell: docker swarm init

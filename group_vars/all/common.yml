@@ -6,8 +6,9 @@ SERVERADMIN_HOME: "/home/isuru"
 SERVERADMIN_SHELL: "/bin/bash"
 SERVERADMIN_PUBLIC_KEY_URL: "/home/isuru/.ssh/id_rsa.pub"
 
-docker_swarm_addr: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
-
+docker_swarm_interface: "enp0s8"
+#docker_swarm_interface: "{{ ansible_default_ipv4['interface'] }}"
+docker_swarm_addr: "{{ hostvars[inventory_hostname]['ansible_' + docker_swarm_interface]['ipv4']['address'] }}"
 docker_swarm_port: 2377
 
 #gitlab personal access details
