@@ -4,6 +4,7 @@
     labels:
       DATA_INFRA_NODE: 1
   delegate_to: "{{ groups['docker_swarm_manager'][0] }}"
-  with_items: groups['docker_infra_node']
+  with_inventory_hostnames:
+    - docker_infra_node
   tags:
     - docker:swarm:label
