@@ -1,5 +1,4 @@
 - name: Set Docker Network
-  shell: docker swarm join-token -q worker
   docker_network:
     state: present
     driver: overlay

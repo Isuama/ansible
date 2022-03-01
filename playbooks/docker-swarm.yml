@@ -7,7 +7,7 @@
   tags:
     - docker:swarm
 
-- hosts: docker_swarm_network
+- hosts: docker_swarm_manager
   become: true
   become_user: root
   tasks:
