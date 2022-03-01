@@ -35,3 +35,6 @@ staging-local ansible_connection=local
 
 [data_pg_node]
 staging-local ansible_connection=local
+
+[data_es_node]
+staging-local ansible_connection=local
