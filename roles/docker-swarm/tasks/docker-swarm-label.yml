@@ -1,19 +1,10 @@
-#- name: Add Docker-Swarm related labels
-#  docker_node:
-#    hostname: "{{ item }}"
-#    labels:
-#      DATA_INFRA_NODE: 1
-#  with_inventory_hostnames:
-#    - docker_infra_node
-#  tags:
-#    - docker:swarm:label
-
-- name: test
-  #  debug:
-  #    msg: "Host is {{item}}"
+---
+- name: Mark Node with Label "{{ item }}"
   docker_node:
     hostname: "{{ item }}"
     labels:
-      DATA_INFRA_NODE: "1"
-  with_items: "{{groups['docker_infra_node']}}"
-      #      when: ("{{hostvars[item]['is_master']}}"=="true")
+      "{{ item }}": "1"
+  with_items: "{{groups['{{ item | lower }}']}}"
+  loop:
+    - DATA_INFRA_NODE
+    - ROUTER_NODE

@@ -15,5 +15,23 @@ staging-local ansible_connection=local
 [gitlab]
 staging-local ansible_connection=local
 
-[docker_infra_node]
+[data_infra_node]
+staging-local ansible_connection=local
+
+[router_node]
+staging-local ansible_connection=local
+
+[app_node]
+staging-local ansible_connection=local
+
+[analysis_node]
+staging-local ansible_connection=local
+
+[data_app_svcs_node]
+staging-local ansible_connection=local
+
+[data_mongo_node]
+staging-local ansible_connection=local
+
+[data_pg_node]
 staging-local ansible_connection=local
