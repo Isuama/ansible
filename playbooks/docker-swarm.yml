@@ -4,3 +4,14 @@
   tasks:
     - name: setup docker swarm cluster
       include_tasks: ../roles/docker-swarm/tasks/main.yml 
+  tags:
+    - docker:swarm
+
+- hosts: docker_swarm_network
+  become: true
+  become_user: root
+  tasks:
+    - name: set docker swarm network
+      include_tasks: ../roles/docker-swarm/tasks/docker-swarm-network.yml
+  tags:
+    - docker:swarm:network

@@ -1,0 +1,9 @@
+- name: Set Docker Network
+  shell: docker swarm join-token -q worker
+  docker_network:
+    state: present
+    driver: overlay
+    attachable: internal
+  delegate_to: "{{ groups['docker_swarm_manager'][0] }}"
+  tags:
+    - docker:swarm:network
