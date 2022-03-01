@@ -1,9 +1,9 @@
 - name: Set Docker Network
   docker_network:
-    name: overlay
+    name: internal
     state: present
     driver: overlay
-    attachable: internal
+    attachable: true
   delegate_to: "{{ groups['docker_swarm_manager'][0] }}"
   tags:
     - docker:swarm:network
