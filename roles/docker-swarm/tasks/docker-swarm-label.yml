@@ -1,10 +1,14 @@
 ---
-- name: Mark Node with Label "{{ item }}"
-  docker_node:
-    hostname: "{{ item }}"
+- name: Mark Node with Label"
+  vars:
     labels:
-      "{{ item }}": "1"
-  with_items: "{{groups['{{ item | lower }}']}}"
-  loop:
-    - DATA_INFRA_NODE
-    - ROUTER_NODE
+      - hostname: data_infra_node
+        name: DATA_INFRA_NODE
+        value: "1"
+  - set_fact: {"{{ labels.name }}":"{{ labels.value }}"}
+    with_items: "{{ labels }}"
+  docker_node:
+    hostname: "{{ labels.hostname }}"
+    labels:
+      "{{ labels.name }}": "{{ labels.value  }}"
+  with_items: "{{ labels }}"
