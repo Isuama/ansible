@@ -7,10 +7,10 @@ staging-local ansible_connection=local
 [docker]
 staging-local ansible_connection=local
 
-[swarm-manager]
+[docker_swarm_manager]
 staging-local ansible_connection=local
 
-[sawrm-worker]
+[docker_swarm_worker]
 
 [gitlab]
 staging-local ansible_connection=local
