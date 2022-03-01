@@ -1,23 +1,11 @@
 ---
-
-- name: Create a custom Swarm network.
-  docker_network:
-    name: docker_gwbridge
-    driver_options:
-      com.docker.network.bridge.enable_icc: "false"
-      com.docker.network.bridge.enable_ip_masquerade: "true"
-      com.docker.network.bridge.name: docker_gwbridge
-    ipam_options:
-      subnet: "{{ docker_swarm_network }}"
-      gateway: "{{ docker_swarm_network | ipaddr('net') | ipaddr('1') | ipaddr('ip') }}"
-  when: docker_swarm_network is defined and docker_swarm_network | ipaddr('net')
-  tags:
-    - docker:swarm
-
 - name: Check if "Swarm Mode" is enabled.
   shell: docker info
   changed_when: false
   register: docker_info
+  debug:
+    msg:
+    - "Docker Swarm Master IP is: {{ docker_swarm_addr }}"
   tags:
     - docker:swarm
 
@@ -48,19 +36,5 @@
   delegate_facts: true
   when: "'docker_swarm_manager' in group_names
     and inventory_hostname != groups['docker_swarm_manager'][0]"
-  tags:
-    - docker:swarm
-
-- name: Declare the address of the first Swarm manager as a fact.
-  set_fact:
-    docker_manager_address: "{{ docker_swarm_addr }}:{{ docker_swarm_port }}"
-  when: "inventory_hostname == groups['docker_swarm_manager'][0]"
-  tags:
-    - docker:swarm
-
-- name: Distribute the fact containing address of the first Swarm manager.
-  set_fact:
-    docker_manager_address: "{{ hostvars[groups['docker_swarm_manager'][0]]['docker_manager_address'] }}"
-  when: "inventory_hostname != groups['docker_swarm_manager'][0]"
   tags:
     - docker:swarm
