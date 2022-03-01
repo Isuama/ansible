@@ -15,3 +15,12 @@
       include_tasks: ../roles/docker-swarm/tasks/docker-swarm-network.yml
   tags:
     - docker:swarm:network
+
+- hosts: docker_swarm_manager
+  become: true
+  become_user: root
+  tasks:
+    - name: set docker swarm node labels
+      include_tasks: ../roles/docker-swarm/tasks/docker-swarm-label.yml
+  tags:
+    - docker:swarm:label

@@ -1,6 +1,16 @@
-- name: Set Docker Network
+- name: Creating docker virtual network - internal 
   docker_network:
     name: internal
+    state: present
+    driver: overlay
+    attachable: true
+  delegate_to: "{{ groups['docker_swarm_manager'][0] }}"
+  tags:
+    - docker:swarm:network
+
+- name: Creating docker virtual network - edge 
+  docker_network:
+    name: edge
     state: present
     driver: overlay
     attachable: true

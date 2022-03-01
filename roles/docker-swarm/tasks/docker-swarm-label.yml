@@ -1,0 +1,9 @@
+- name: Add Docker-Swarm related labels
+  docker_node:
+    hostname: "{{ item }}"
+    labels:
+      DATA_INFRA_NODE: 1
+  delegate_to: "{{ groups['docker_swarm_manager'][0] }}"
+  with_items: groups['docker_infra_node']
+  tags:
+    - docker:swarm:label
