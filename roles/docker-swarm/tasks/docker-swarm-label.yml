@@ -1,52 +1,52 @@
 ---
-  - name: Mark Node with Label DATA_INFRA_NODE
-    docker_node:
-      hostname: "{{ item }}"
-      labels:
-        DATA_INFRA_NODE: "1"
-    with_items: "{{groups['data_infra_node']}}"
+- name: Mark Node with Label DATA_INFRA_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels:
+      DATA_INFRA_NODE: "1"
+  with_items: "{{groups['data_infra_node']}}"
 
-  - name: Mark Node with Label ROUTER_NODE
-    docker_node:
-      hostname: "{{ item }}"
-      labels:
-        ROUTER_NODE: "1"
-    with_items: "{{groups['router_node']}}"
+- name: Mark Node with Label ROUTER_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels:
+      ROUTER_NODE: "1"
+  with_items: "{{groups['router_node']}}"
 
-  - name: Mark Node with Label APP_NODE
-    docker_node:
-      hostname: "{{ item }}"
-      labels:
-        APP_NODE: "1"
-    with_items: "{{groups['app_node']}}"
+- name: Mark Node with Label APP_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels:
+      APP_NODE: "1"
+  with_items: "{{groups['app_node']}}"
 
-  - name: Mark Node with Label ANALYSIS_NODE
-    docker_node:
-      hostname: "{{ item }}"
-      labels:
-        ANALYSIS_NODE: "1"
-    with_items: "{{groups['analysis_node']}}"
+- name: Mark Node with Label ANALYSIS_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels:
+      ANALYSIS_NODE: "1"
+  with_items: "{{groups['analysis_node']}}"
 
-  - name: Mark Node with Label DATA_APP_SVCS_NODE
-    docker_node:
-      hostname: "{{ item }}"
-      labels:
-        DATA_APP_SVCS_NODE: "1"
-    with_items: "{{groups['data_app_svcs_node']}}"
+- name: Mark Node with Label DATA_APP_SVCS_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels:
+      DATA_APP_SVCS_NODE: "1"
+  with_items: "{{groups['data_app_svcs_node']}}"
 
-  - name: Mark Node with Label DATA_MONGO_NODE
-    docker_node:
-      hostname: "{{ item }}"
-      labels:
-        DATA_MONGO_NODE: "1"
-    with_items: "{{groups['data_mongo_node']}}"
+- name: Mark Node with Label DATA_MONGO_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels:
+      DATA_MONGO_NODE: "1"
+  with_items: "{{groups['data_mongo_node']}}"
 
-  - name: Mark Node with Label DATA_PG_NODE
-    docker_node:
-      hostname: "{{ item }}"
-      labels:
-        DATA_PG_NODE: "1"
-    with_items: "{{groups['data_pg_node']}}"
+- name: Mark Node with Label DATA_PG_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels:
+      DATA_PG_NODE: "1"
+  with_items: "{{groups['data_pg_node']}}"
 
 #############
 - name: Populate Labels for DATA_ES_NODE
