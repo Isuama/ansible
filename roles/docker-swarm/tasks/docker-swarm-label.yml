@@ -1,70 +1,84 @@
 ---
-  # - name: Mark Node with Label DATA_INFRA_NODE
-  #   docker_node:
-  #     hostname: "{{ item }}"
-  #     labels:
-  #       DATA_INFRA_NODE: "1"
-  #   with_items: "{{groups['data_infra_node']}}"
+  - name: Mark Node with Label DATA_INFRA_NODE
+    docker_node:
+      hostname: "{{ item }}"
+      labels:
+        DATA_INFRA_NODE: "1"
+    with_items: "{{groups['data_infra_node']}}"
 
+  - name: Mark Node with Label ROUTER_NODE
+    docker_node:
+      hostname: "{{ item }}"
+      labels:
+        ROUTER_NODE: "1"
+    with_items: "{{groups['router_node']}}"
 
-  # - name: Mark Node with Label ROUTER_NODE
-  #   docker_node:
-  #     hostname: "{{ item }}"
-  #     labels:
-  #       ROUTER_NODE: "1"
-  #   with_items: "{{groups['router_node']}}"
+  - name: Mark Node with Label APP_NODE
+    docker_node:
+      hostname: "{{ item }}"
+      labels:
+        APP_NODE: "1"
+    with_items: "{{groups['app_node']}}"
 
-  # - name: Mark Node with Label APP_NODE
-  #   docker_node:
-  #     hostname: "{{ item }}"
-  #     labels:
-  #       APP_NODE: "1"
-  #   with_items: "{{groups['app_node']}}"
+  - name: Mark Node with Label ANALYSIS_NODE
+    docker_node:
+      hostname: "{{ item }}"
+      labels:
+        ANALYSIS_NODE: "1"
+    with_items: "{{groups['analysis_node']}}"
 
-  # - name: Mark Node with Label ANALYSIS_NODE
-  #   docker_node:
-  #     hostname: "{{ item }}"
-  #     labels:
-  #       ANALYSIS_NODE: "1"
-  #   with_items: "{{groups['analysis_node']}}"
+  - name: Mark Node with Label DATA_APP_SVCS_NODE
+    docker_node:
+      hostname: "{{ item }}"
+      labels:
+        DATA_APP_SVCS_NODE: "1"
+    with_items: "{{groups['data_app_svcs_node']}}"
 
-  # - name: Mark Node with Label DATA_APP_SVCS_NODE
-  #   docker_node:
-  #     hostname: "{{ item }}"
-  #     labels:
-  #       DATA_APP_SVCS_NODE: "1"
-  #   with_items: "{{groups['data_app_svcs_node']}}"
+  - name: Mark Node with Label DATA_MONGO_NODE
+    docker_node:
+      hostname: "{{ item }}"
+      labels:
+        DATA_MONGO_NODE: "1"
+    with_items: "{{groups['data_mongo_node']}}"
 
-  # - name: Mark Node with Label DATA_MONGO_NODE
-  #   docker_node:
-  #     hostname: "{{ item }}"
-  #     labels:
-  #       DATA_MONGO_NODE: "1"
-  #   with_items: "{{groups['data_mongo_node']}}"
+  - name: Mark Node with Label DATA_PG_NODE
+    docker_node:
+      hostname: "{{ item }}"
+      labels:
+        DATA_PG_NODE: "1"
+    with_items: "{{groups['data_pg_node']}}"
 
-  # - name: Mark Node with Label DATA_PG_NODE
-  #   docker_node:
-  #     hostname: "{{ item }}"
-  #     labels:
-  #       DATA_PG_NODE: "1"
-  #   with_items: "{{groups['data_pg_node']}}"
-
-# - name: Mark Node with Label DATA_ES_NODE
-#   host_number: 0
-#   set_fact: host_number={{ host_number | int + 1 }}
-#   docker_node:
-#     hostname: "{{ item }}"
-#     labels: "{{ "{{ DATA_ES_NODE+host_number }}" }}": "1"
-#   with_items: "{{groups['data_es_node']}}"
-
-- name: assign dynamic label
+#############
+- name: Populate Labels for DATA_ES_NODE
+  vars:
+    - end_at: "{{ groups['data_es_node'] | length }}"
+    - prefix: "DATA_ES_NODE-"
+    - value: "1"
   set_fact:
-      my_labels: "{{ my_labels | default({}) | combine ({ item.key : item.value }) }}"
-  with_items:
-    - { 'key': 'traefik.enable' , 'value': 'true'}
-  
-- name: create dynamic label
+    data_es_node_labels: "{{ data_es_node_labels | default({}) | combine ({ prefix+item : value }) }}"
+  with_sequence: start=1 end="{{ end_at }}"
+
+- name: Mark Node with Label DATA_ES_NODE
   docker_node:
     hostname: "{{ item }}"
-    labels: "{{ my_labels }}"
+    labels: "{{ data_es_node_labels }}"
+    labels_state: replace
   with_items: "{{groups['data_es_node']}}"
+
+#################
+
+- name: Remove all labels from the node
+  docker_node:
+    hostname: mynode
+    labels: "{}"
+  tags:
+    - docker:swarm:label:remove
+
+- name: Remove selected labels from the node
+  docker_node:
+    hostname: mynode
+    labels_to_remove:
+      - key1
+      - key2
+  tags:
+    - docker:swarm:label:remove

@@ -1,0 +1,3 @@
+- hostname: staging-local
+  labels_to_remove:
+    - "DATA_INFRA_NODE"
