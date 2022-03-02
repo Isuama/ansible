@@ -62,7 +62,6 @@
   docker_node:
     hostname: "{{ item }}"
     labels: "{{ data_es_node_labels }}"
-    labels_state: replace
   with_items: "{{groups['data_es_node']}}"
 
 #################
