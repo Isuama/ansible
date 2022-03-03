@@ -4,6 +4,8 @@
 # - to delete a label: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label --extra-vars "server_name=staging-local labels_to_delete="ROUTER_NODE" 
 # - to delete multiple label: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label --extra-vars "server_name=staging-local labels_to_delete="ROUTER_NODE,DATA_PG_NODE,DATA_INFRA_NODE""
 # - to delete all labels: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label --extra-vars "server_name=staging-local labels_to_delete="""
+# * Once delete a label from the command, make sure to change inventory manually. Otherwise label may added again if the script executed
+
 - name: Mark Node with Label DATA_INFRA_NODE
   docker_node:
     hostname: "{{ item }}"
@@ -53,10 +55,9 @@
       DATA_PG_NODE: "1"
   with_items: "{{groups['data_pg_node']}}"
 
-#############
+############# DATA_ES_NODE ######################
 - name: Populate Labels for DATA_ES_NODE
   vars:
-    - end_at: "1" # "{{ groups['data_es_node'] | length }}"
     - prefix: "DATA_ES_NODE-"
     - value: "1"
   set_fact:
@@ -69,7 +70,41 @@
     labels: "{{ data_es_node_labels }}"
   with_items: "{{groups['data_es_node']}}"
 
-#################
+############# DATA_ES_NODE ######################
+
+############# DATA_FS_NODE ######################
+- name: Populate Labels for DATA_FS_NODE
+  vars:
+    - prefix: "DATA_FS_NODE-"
+    - value: "1"
+  set_fact:
+    data_fs_node_labels: "{{ data_fs_node_labels | default({}) | combine ({ prefix+item : value }) }}"
+  with_sequence: start=1 end="{{ groups['data_fs_node'] | length }}"
+
+- name: Mark Node with Label DATA_FS_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels: "{{ data_fs_node_labels }}"
+  with_items: "{{groups['data_fs_node']}}"
+
+############# DATA_FS_NODE ######################
+
+############# DATA_NEO_NODE ######################
+- name: Populate Labels for DATA_NEO_NODE
+  vars:
+    - prefix: "DATA_NEO_NODE-"
+    - value: "1"
+  set_fact:
+    data_neo_node_labels: "{{ data_neo_node_labels | default({}) | combine ({ prefix+item : value }) }}"
+  with_sequence: start=1 end="{{ groups['data_neo_node'] | length }}"
+
+- name: Mark Node with Label DATA_NEO_NODE
+  docker_node:
+    hostname: "{{ item }}"
+    labels: "{{ data_neo_node_labels }}"
+  with_items: "{{groups['data_neo_node']}}"
+
+############# DATA_NEO_NODE ######################
 
 - name: Convert Labels to remove to a list
   set_fact:

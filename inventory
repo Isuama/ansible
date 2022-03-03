@@ -38,3 +38,9 @@ staging-local ansible_connection=local
 
 [data_es_node]
 staging-local ansible_connection=local
+
+[data_fs_node]
+staging-local ansible_connection=local
+
+[data_neo_node]
+staging-local ansible_connection=local
