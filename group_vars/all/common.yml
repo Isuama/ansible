@@ -11,6 +11,9 @@ docker_swarm_interface: "enp0s8"
 docker_swarm_addr: "{{ hostvars[inventory_hostname]['ansible_' + docker_swarm_interface]['ipv4']['address'] }}"
 docker_swarm_port: 2377
 
+docker_swarm_ipam_internal_subnet: 192.168.1.0/24
+docker_swarm_ipam_edge_subnet: 192.168.1.0/24
+
 #gitlab personal access details
 gitlab_url: "https://gitlab.com/"
 api_token: "glpat-whuxjYdgqksZgxVDwQxf"

@@ -4,6 +4,8 @@
     state: present
     driver: overlay
     attachable: true
+    ipam_config:
+      - subnet: "{{ docker_swarm_ipam_internal_subnet }}"
   delegate_to: "{{ groups['docker_swarm_manager'][0] }}"
   tags:
     - docker:swarm:network
@@ -14,6 +16,8 @@
     state: present
     driver: overlay
     attachable: true
+    ipam_config:
+      - subnet: "{{ docker_swarm_ipam_edge_subnet }}"
   delegate_to: "{{ groups['docker_swarm_manager'][0] }}"
   tags:
     - docker:swarm:network

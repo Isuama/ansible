@@ -1,5 +1,8 @@
 ---
 #commands,
+
+# check swarm node labels: sudo docker node ls -q | xargs sudo docker node inspect   -f '{{ .ID }} [{{ .Description.Hostname }}]: {{ .Spec.Labels }}'
+
 # - to add all labels: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label
 # - to delete a label: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label --extra-vars "server_name=staging-local labels_to_delete="ROUTER_NODE" 
 # - to delete multiple label: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label --extra-vars "server_name=staging-local labels_to_delete="ROUTER_NODE,DATA_PG_NODE,DATA_INFRA_NODE""
