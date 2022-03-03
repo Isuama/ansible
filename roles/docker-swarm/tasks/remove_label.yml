@@ -1,0 +1,13 @@
+[production]
+# My production information
+user=robert
+pass=somerandompassword
+
+[integration]
+# My integration information
+user=gertrude
+pass=anotherpassword
+
+#[staging-local]
+#label="DATA_INFRA_NODE"
+

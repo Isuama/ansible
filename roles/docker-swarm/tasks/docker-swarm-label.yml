@@ -51,12 +51,12 @@
 #############
 - name: Populate Labels for DATA_ES_NODE
   vars:
-    - end_at: "{{ groups['data_es_node'] | length }}"
+    - end_at: "1" # "{{ groups['data_es_node'] | length }}"
     - prefix: "DATA_ES_NODE-"
     - value: "1"
   set_fact:
     data_es_node_labels: "{{ data_es_node_labels | default({}) | combine ({ prefix+item : value }) }}"
-  with_sequence: start=1 end="{{ end_at }}"
+  with_sequence: start=1 end="{{ groups['data_es_node'] | length }}"
 
 - name: Mark Node with Label DATA_ES_NODE
   docker_node:
@@ -66,18 +66,38 @@
 
 #################
 
-- name: Remove all labels from the node
-  docker_node:
-    hostname: mynode
-    labels: "{}"
-  tags:
-    - docker:swarm:label:remove
+- name: Convert Labels to remove to a list
+  set_fact:
+    server_name: "{{ server_name }}"
+    labels_to_delete: "{{ labels_to_delete.split(',') }}"
+  when: (server_name is defined) and (labels_to_delete is defined)
+
+- debug:
+    var: server_name
+- debug:
+    var: labels_to_delete
 
 - name: Remove selected labels from the node
   docker_node:
-    hostname: mynode
-    labels_to_remove:
-      - key1
-      - key2
+    hostname: "{{ server_name }}"
+    labels_to_remove: "{{ labels_to_delete  }}"
+  when: (server_name is defined) and (labels_to_delete is defined)
   tags:
     - docker:swarm:label:remove
+
+- debug:
+    var: server_name is defined
+
+- debug:
+    var: labels_to_delete is defined
+
+- debug:
+    var: (labels_to_delete|length)==0
+
+
+- name: Remove all labels from the node
+  docker_node:
+    hostname: "{{ server_name }}"
+    labels: "{}"
+    labels_state: replace
+  when: (server_name is defined) and (labels_to_delete is defined) and ((labels_to_delete|length)==0)
