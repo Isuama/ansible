@@ -1,0 +1,71 @@
+[ansible-master]
+swarm-master-1 ansible_connection=local
+
+[servers]
+swarm-master-1 ansible_connection=local
+swarm-master-2
+swarm-worker-1
+swarm-worker-2
+
+[docker]
+swarm-master-1 ansible_connection=local
+swarm-master-2
+swarm-worker-1
+swarm-worker-2
+
+[docker_swarm]
+swarm-master-1 ansible_connection=local
+swarm-master-2
+swarm-worker-1
+swarm-worker-2
+
+[docker_swarm_manager]
+swarm-master-1 ansible_connection=local
+swarm-master-2
+
+[docker_swarm_worker]
+swarm-worker-1
+swarm-worker-2
+
+[gitlab]
+swarm-master-1 ansible_connection=local
+
+[data_infra_node]
+swarm-worker-1
+swarm-worker-2
+
+[router_node]
+swarm-worker-1
+swarm-worker-2
+
+[app_node]
+swarm-worker-1
+swarm-worker-2
+
+[analysis_node]
+swarm-worker-1
+swarm-worker-2
+
+[data_app_svcs_node]
+swarm-worker-1
+swarm-worker-2
+
+[data_mongo_node]
+swarm-worker-1
+swarm-worker-2
+
+[data_pg_node]
+swarm-worker-1
+swarm-worker-2
+
+[data_es_node]
+swarm-worker-1
+swarm-worker-2
+
+[data_fs_node]
+swarm-worker-1
+swarm-worker-2
+
+[data_neo_node]
+swarm-worker-1
+swarm-worker-2

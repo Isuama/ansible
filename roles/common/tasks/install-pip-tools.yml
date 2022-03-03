@@ -1,0 +1,7 @@
+---
+- name: Install pip modules
+  pip:
+    name: "{{ PIP_TOOLS }}"
+    state: present
+  tags:
+  - "common:pip-tools"

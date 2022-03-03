@@ -26,16 +26,15 @@
   tags:
   - common:extra-tools
 
-- hosts: servers
+- hosts: ansible-master
   become: true
   become_user: root
   vars_files:
     - ../group_vars/extra-tools.yml
   tasks:
     - name: install extra tools
-      include_tasks: ../roles/common/tasks/install-extra-tools.yml 
+      include_tasks: ../roles/common/tasks/install-pip-tools.yml 
   tags:
-  - common:extra-tools
   - common:pip-tools
 
 - hosts: gitlab

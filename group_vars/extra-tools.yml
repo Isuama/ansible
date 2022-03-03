@@ -6,3 +6,4 @@ EXTRA_TOOLS:
 
 PIP_TOOLS:
 - python-gitlab
+- docker
