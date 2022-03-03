@@ -1,4 +1,9 @@
 ---
+#commands,
+# - to add all labels: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label
+# - to delete a label: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label --extra-vars "server_name=staging-local labels_to_delete="ROUTER_NODE" 
+# - to delete multiple label: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label --extra-vars "server_name=staging-local labels_to_delete="ROUTER_NODE,DATA_PG_NODE,DATA_INFRA_NODE""
+# - to delete all labels: ansible-playbook playbooks/docker-swarm.yml --tags docker:swarm:label --extra-vars "server_name=staging-local labels_to_delete="""
 - name: Mark Node with Label DATA_INFRA_NODE
   docker_node:
     hostname: "{{ item }}"
