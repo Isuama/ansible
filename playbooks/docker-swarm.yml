@@ -1,6 +1,7 @@
-- hosts: docker_swarm
+- hosts: docker_swarm_manager
   become: true
   become_user: root
+  run_once: true
   tasks:
     - name: setup docker swarm cluster
       include_tasks: ../roles/docker-swarm/tasks/main.yml 
